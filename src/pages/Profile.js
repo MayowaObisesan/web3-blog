@@ -17,7 +17,6 @@ const Profile = () => {
                         <h1 className="text-5xl font-bold">Hello there</h1>
                         <div className="py-4">Your address: <br /> {account}</div>
                         <p className="py-6">Welcome to my Profile</p>
-                        <div>You have </div>
                         <button className="btn btn-primary">Get Started</button>
                     </div>
                 </div>
