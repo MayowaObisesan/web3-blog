@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useConnection } from "../context/connection";
-import { getInkContract } from "../utils";
+import { getInkContract, getInkContractWithProvider } from "../utils";
 
 const usePosts = () => {
     const [posts, setPosts] = useState([]);
@@ -21,6 +21,28 @@ const usePosts = () => {
 
         fetchPosts();
     }, [provider]);
+
+    useEffect(() => {
+        // Listen for event
+        const handleCreatePostEvent = (id, poster, content, timePosted, tips) => {
+            setPosts([
+                {
+                    id: id,
+                    poster: poster,
+                    content: content,
+                    timePosted: Number(timePosted),
+                    tips: tips
+                },
+                ...posts,
+            ]);
+        };
+        const contract = getInkContractWithProvider(provider);
+        contract.on("NewPost", handleCreatePostEvent);
+
+        return () => {
+            contract.off("NewPost", handleCreatePostEvent);
+        };
+    }, [posts, provider]);
     return posts;
 };
 
