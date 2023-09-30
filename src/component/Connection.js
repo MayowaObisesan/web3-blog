@@ -21,10 +21,10 @@ const Connection = () => {
         );
     return (
         <div className="flex gap-2 items-center">
-            <div className="flex gap-2 items-center font-bold text-sm">
+            {/* <div className="flex gap-2 items-center font-bold text-sm">
                 <span>{`${Number(ethBalance).toFixed(2)}ETH`}</span>
                 <span>{shortenAccount(account)}</span>
-            </div>
+            </div> */}
             <div className="flex gap-2 items-center">
                 <div className="relative text-right">
                     <ul className={"menu menu-md menu-horizontal px-1 text-sm"}>

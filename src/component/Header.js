@@ -3,8 +3,14 @@ import Connection from "./Connection";
 import Register from "./Register";
 import { Link } from "react-router-dom";
 import usePostCount from "../hooks/usePostCount";
+import { useConnection } from "../context/connection";
+import useBalance from "../hooks/useBalance";
+import { shortenAccount } from "../utils";
 
 const Header = () => {
+    const { account } = useConnection();
+    const ethBalance = useBalance(account);
+
     const postCount = usePostCount();
 
     const handleDisconnect = () => {
@@ -110,6 +116,22 @@ const Header = () => {
                                 </div>
                             </label>
                             <ul tabIndex={0} className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52">
+                                {
+                                    account
+                                    && <li className={""}>
+                                        <div className="justify-between p-4 font-bold">
+                                            Account:
+                                            <span>{shortenAccount(account)}</span>
+                                        </div>
+                                    </li>
+                                }
+                                <li className={""}>
+                                    <div className="justify-between p-4 font-bold">
+                                        Balance:
+                                        <span>{`${Number(ethBalance).toFixed(2)}ETH`}</span>
+                                    </div>
+                                </li>
+                                <div className="divider"></div>
                                 <li className={""}>
                                     <Link to="/me/profile" className="justify-between p-4">
                                         Profile
