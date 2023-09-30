@@ -35,7 +35,7 @@ const Register = () => {
         <section>
             <button
                 type={"button"}
-                className={"btn btn-success"}
+                className={"btn btn-md btn-success"}
                 onClick={handleRegister}
             >
                 Register
