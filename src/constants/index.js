@@ -3,7 +3,7 @@ export const supportedChains = [11155111, 84531];
 export const networkInfoMap = {
     11155111: {
         chainId: `0x${(11155111).toString(16)}`,
-        chainName: "Sepolia test network",
+        chainName: "Sepolia",
         rpcUrls: ["https://sepolia.infura.io/v3/"],
         blockExplorerUrls: ["https://sepolia.etherscan.io"],
         nativeCurrency: {
@@ -31,3 +31,7 @@ export const rpcUrlsMap = {
     11155111: "https://endpoints.omniatech.io/v1/eth/sepolia/public",
     84531: "https://base-goerli.g.alchemy.com/v2/Nm1nL2ueUsq1thAC6Aznm6RnyglPUwKR",
 };
+
+/* TOAST MESSAGES */
+export const M_NOT_CONNECTED = "PLEASE CONNECT WALLET TO PROCEED";
+export const M_TRANSACTION_FAILED = "Transaction failed";

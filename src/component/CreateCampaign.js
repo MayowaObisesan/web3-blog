@@ -2,7 +2,7 @@ import { Dialog, Transition } from "@headlessui/react";
 import React, { Fragment, useState } from "react";
 import useProposeCampaign from "../hooks/useProposeCampaign";
 import { useConnection } from "../context/connection";
-import { supportedChains } from "../constants";
+import { M_TRANSACTION_FAILED, supportedChains } from "../constants";
 import { parseEther } from "ethers";
 import { toast } from "react-toastify";
 
@@ -37,7 +37,7 @@ const CreateCampaign = () => {
                 duration * 60
             );
             const receipt = await tx.wait();
-            if (receipt.status === 0) return toast.error("tx failed");
+            if (receipt.status === 0) return toast.error(M_TRANSACTION_FAILED);
 
             toast.success("campaign created!!");
             setIsOpen(false);

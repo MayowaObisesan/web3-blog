@@ -21,21 +21,43 @@ const Connection = () => {
         );
     return (
         <div className="flex gap-2 items-center">
-            <div className="flex gap-2 items-center font-bold">
+            <div className="flex gap-2 items-center font-bold text-sm">
                 <span>{`${Number(ethBalance).toFixed(2)}ETH`}</span>
                 <span>{shortenAccount(account)}</span>
             </div>
             <div className="flex gap-2 items-center">
                 <div className="relative text-right">
+                    <ul className={"menu menu-md menu-horizontal px-1 text-sm"}>
+                        <li>
+                            <details>
+                                <summary>
+                                    {isActive
+                                        ? networkInfoMap[chainId]?.chainName
+                                        : "Networks"}
+                                </summary>
+                                <ul className="p-2 bg-base-100">
+                                    {supportedChains.map((eachChain) => (
+                                        <li>
+                                            <button type={"button"} onClick={() => switchToChain(eachChain)}>
+                                                {networkInfoMap[
+                                                    eachChain
+                                                ].chainName}
+                                            </button>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </details>
+                        </li>
+                    </ul>
                     <Menu as="div" className="relative inline-block text-left">
                         <div>
-                            <Menu.Button className="inline-flex w-full justify-center rounded-md bg-blue-400 px-4 py-2 text-sm font-medium text-white hover:bg-opacity-90 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75">
+                            {/* <Menu.Button className="inline-flex w-full justify-center rounded-md bg-blue-400 px-4 py-2 text-sm font-medium text-white hover:bg-opacity-90 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75">
                                 {isActive
                                     ? networkInfoMap[chainId]?.chainName
                                     : "Networks"}
-                            </Menu.Button>
+                            </Menu.Button> */}
                         </div>
-                        <Transition
+                        {/* <Transition
                             as={Fragment}
                             enter="transition ease-out duration-100"
                             enterFrom="transform opacity-0 scale-95"
@@ -54,11 +76,10 @@ const Connection = () => {
                                                         supportedChains[0]
                                                     )
                                                 }
-                                                className={`${
-                                                    active
-                                                        ? "bg-blue-400 text-white"
-                                                        : "text-gray-900"
-                                                } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
+                                                className={`${active
+                                                    ? "bg-blue-400 text-white"
+                                                    : "text-gray-900"
+                                                    } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
                                             >
                                                 {
                                                     networkInfoMap[
@@ -76,11 +97,10 @@ const Connection = () => {
                                                         supportedChains[1]
                                                     )
                                                 }
-                                                className={`${
-                                                    active
-                                                        ? "bg-blue-400 text-white"
-                                                        : "text-gray-900"
-                                                } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
+                                                className={`${active
+                                                    ? "bg-blue-400 text-white"
+                                                    : "text-gray-900"
+                                                    } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
                                             >
                                                 {
                                                     networkInfoMap[
@@ -92,7 +112,7 @@ const Connection = () => {
                                     </Menu.Item>
                                 </div>
                             </Menu.Items>
-                        </Transition>
+                        </Transition> */}
                     </Menu>
                 </div>
             </div>

@@ -2,9 +2,13 @@ import { ethers, toBigInt } from "ethers";
 import { rpcUrlsMap, supportedChains } from "../constants";
 import {
     crowdfundContractAddress,
+    inkAddress,
+    inkTokenAddress,
     multcall2ContractAddress,
 } from "../constants/addresses";
 import crowdFundAbi from "../constants/abis/crowdfund.json";
+import inkAbi from "../constants/abis/ink.json";
+import inkTokenAbi from "../constants/abis/inkToken.json";
 import multicall2Abi from "../constants/abis/multicall2Abi.json";
 
 export const isSupportedChain = (chainId) =>
@@ -27,6 +31,9 @@ export const getContract = async (address, abi, provider, withWrite) => {
 const getInterface = (abi) => new ethers.Interface(abi);
 export const getCrowdFundInterface = () => getInterface(crowdFundAbi);
 
+export const getInkInterface = () => getInterface(inkAbi);
+export const getInkTokenInterface = () => getInterface(inkTokenAbi);
+
 export const getContractWithProvider = (address, abi, provider) => {
     return new ethers.Contract(address, abi, provider);
 };
@@ -47,6 +54,42 @@ export const getCrowdfundContractWithProvider = (provider) => {
         provider
     );
 };
+
+export const getInkContract = async (provider, withWrite) => {
+    return await getContract(
+        inkAddress,
+        inkAbi,
+        provider,
+        withWrite
+    );
+};
+
+export const getInkContractWithProvider = (provider) => {
+    return getContractWithProvider(
+        inkAddress,
+        inkAbi,
+        provider
+    );
+};
+
+
+export const getInkTokenContract = async (provider, withWrite) => {
+    return await getContract(
+        inkTokenAddress,
+        inkTokenAbi,
+        provider,
+        withWrite
+    );
+};
+
+export const getInkTokenContractWithProvider = (provider) => {
+    return getContractWithProvider(
+        inkTokenAddress,
+        inkTokenAbi,
+        provider
+    );
+};
+
 
 export const getMulticall2ContractWithProvider = (provider) => {
     return getContractWithProvider(
